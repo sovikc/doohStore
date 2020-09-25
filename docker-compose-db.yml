@@ -1,0 +1,15 @@
+version: '3.2'
+services:  
+  ooh.ims.db:
+   build:
+     context: ./db
+     dockerfile: Dockerfile
+   restart: always
+   environment: 
+     - POSTGRES_DB=oohdb
+     - POSTGRES_USER=postgres
+     - POSTGRES_PASSWORD=postgres
+   ports:
+     - "5432:5432"
+   volumes:
+    - ./var/lib/postgresql/data
