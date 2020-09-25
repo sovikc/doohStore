@@ -21,7 +21,7 @@ app.use(function unmatched(req: Request, res: Response) {
   return res.status(404).send('Invalid Request');
 });
 
-const { PORT = 8080 } = process.env;
+const { PORT = 3000 } = process.env;
 const server = http.createServer(app);
 server.listen(PORT, function startup() {
   console.log('server listening on', PORT);
