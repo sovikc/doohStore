@@ -10,7 +10,27 @@ POST         /centres
 
 --------------------------------
 
+GET          /centres/:id
+
+--------------------------------
+
+PATCH        /centres/:id
+
+--------------------------------
+
+DELETE       /centres/:id
+
+--------------------------------
+
 POST         /centres/:id/locations
+
+--------------------------------
+
+PATCH        /centres/:id/locations/:locationId
+
+--------------------------------
+
+DELETE       /centres/:id/locations/:locationId
 
 --------------------------------
 
