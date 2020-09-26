@@ -2,7 +2,7 @@
 An inventory of physical display panels installed in shopping centres
 
 ## Approach
-A mix of ideas from Domain-driven design and Uncle Bob's Clean Architecture
+A mix of ideas from Domain-driven design and Uncle Bob's Clean Architecture implemented in TypeScript
 
 ## Low-level design
 ![alt text](https://github.com/sovikc/oohMedia/blob/master/low_level_design.png)
