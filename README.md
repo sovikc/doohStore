@@ -73,16 +73,10 @@ change_log
 
    PATCH        /centres/:id
    {
-    "name": "Northwind",
-    "address": {
-      "lineOne": "273 Kelvin Street",
-      "lineTwo": "Beside Dallybin",
-      "city": "Lancabin",
-      "state": "Top Bristol",
-      "postCode": "700029",
-      "country": "Isle of Grand Fenwick"
+   "address": {
+      "lineTwo": "Cnr of Manning and Addison"
       }
-    }
+   }
 
    DELETE       /centres/:id
 
