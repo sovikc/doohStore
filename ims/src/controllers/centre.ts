@@ -42,7 +42,7 @@ export function makeAddCentre(addShoppingCentre: any) {
       data.id = centre.id;
       data.attributes = {};
       data.attributes.name = centre.name;
-      data.attributes.address = centre.address;
+      data.attributes.address = getAddress(centre);
       return {
         headers: {
           'Content-Type': 'application/json',
@@ -72,6 +72,22 @@ export function makeAddCentre(addShoppingCentre: any) {
   };
 }
 
+function getAddress(centre: any): any {
+  let address: any;
+  if (centre.address) {
+    address = {};
+    address.lineOne = centre.address.lineOne;
+    if (centre.address.lineTwo) {
+      address.lineTwo = centre.address.lineTwo;
+    }
+    address.city = centre.address.city;
+    address.state = centre.address.state;
+    address.postCode = centre.address.postCode;
+    address.country = centre.address.country;
+  }
+  return address;
+}
+
 export function makeFindCentre(findShoppingCentre: any) {
   return async function findCentre(httpRequest: any): Promise<HttpResponse> {
     const { body, params } = httpRequest;
@@ -96,17 +112,7 @@ export function makeFindCentre(findShoppingCentre: any) {
       data.id = centre.id;
       data.attributes = {};
       data.attributes.name = centre.name;
-      if (centre.address) {
-        data.attributes.address = {};
-        data.attributes.address.lineOne = centre.address.lineOne;
-        if (centre.address.lineTwo) {
-          data.attributes.address.lineTwo = centre.address.lineTwo;
-        }
-        data.attributes.address.city = centre.address.city;
-        data.attributes.address.state = centre.address.state;
-        data.attributes.address.postCode = centre.address.postCode;
-        data.attributes.address.country = centre.address.country;
-      }
+      data.attributes.address = getAddress(centre);
       return {
         headers: {
           'Content-Type': 'application/json',
@@ -191,7 +197,7 @@ export function makeUpdateCentre(updateShoppingCentre: any) {
       data.id = centre.id;
       data.attributes = {};
       data.attributes.name = centre.name;
-      data.attributes.address = centre.address;
+      data.attributes.address = getAddress(centre);
       return {
         headers: {
           'Content-Type': 'application/json',
