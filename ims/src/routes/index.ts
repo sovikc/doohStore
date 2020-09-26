@@ -42,11 +42,11 @@ PATCH        /assets/:id
 
 --------------------------------
 
-POST         /:id/allocate
+POST         /assets/:id/allocate
 
 --------------------------------
 
-DELETE       /:id/allocate
+DELETE       /assets/:id/allocate
 
 --------------------------------
 `;
