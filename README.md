@@ -26,12 +26,18 @@ A mix of ideas from Domain-driven design and Uncle Bob's Clean Architecture impl
 6. **controller** - transformation related code for request/response and invocation of services. 
 7. **db/pg.sql** - ddl statements for the tables: shopping_centre, location_within_centre, asset, asset_allocation, and change_log.
 
-## Database tables
-1. shopping_centre
-2. location_within_centre
-3. asset
-4. asset_allocation 
-5. change_log
+## Database side of things
+1. The database is designed as an OLTP database. It has following tables.
+```
+shopping_centre
+location_within_centre
+asset
+asset_allocation 
+change_log
+```
+2. All `insert` and `update` statements use database transactions with an isolation level of `Read Committed`.
+3. Every data manipulation is recorded in `change_log` table and can be used for both `audit` as well as `event source` if the services need to move in that direction.
+4. All the connection parameters are stored in `.env` file.
 
 ## Tests
 1. Jest is used as a testing framework.
@@ -47,7 +53,7 @@ A mix of ideas from Domain-driven design and Uncle Bob's Clean Architecture impl
 ## How to run
 1. The code is dockerized and can easily be run with docker-compose
 2. The server will run on port 8080 and the request needs 2 headers `auth-token` with value `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNrZjg2cm9sNzAwMDF6MTBmYjNveTNwaDUiLCJpYXQiOjE2MDA1OTY3MTB9.bbGI82--q4U9WIdn4KhAHuVlK4XpkG0moKm6lUPWEww` and `content-type`with value `application/json`. The `auth-token` will ensure that these APIs are protected against anonymous access.
-3. The code has following APIs that can be used
+3. The code has following APIs that can be used. There are example requests for `POST` and `PATCH` APIs.
 ```
    GET          /
    
