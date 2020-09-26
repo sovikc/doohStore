@@ -35,17 +35,19 @@ A mix of ideas from Domain-driven design and Uncle Bob's Clean Architecture
 
 ## Tests
 1. Jest is used as a testing framework.
-2. Entity creation rules in the inventory have beed tested with centre.spec.ts and asset.spec.ts.
+2. Entity creation rules in the inventory have been tested with centre.spec.ts and asset.spec.ts.
 3. Application rules in management services are covered by services.spec.ts.
 
 ## What's not done
 1. APIs for user registration and login.
 2. APIs for searching for Assets
-3. User interface
+3. User interface for the application
+4. Docker secrets in the docker-compose files
 
 ## How to run
 1. The code is dockerized and can easily be run with docker-compose
-2. The code has following APIs that can be used
+2. The server will run of port 8080 in the localhost and the request needs 2 headers `auth-token` with value `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNrZjg2cm9sNzAwMDF6MTBmYjNveTNwaDUiLCJpYXQiOjE2MDA1OTY3MTB9.bbGI82--q4U9WIdn4KhAHuVlK4XpkG0moKm6lUPWEww` and `content-type`with value `application/json`
+3. The code has following APIs that can be used
 ```
    GET          /
    
@@ -112,5 +114,4 @@ A mix of ideas from Domain-driven design and Uncle Bob's Clean Architecture
 
    DELETE       /assets/:id/allocate
 ```
-3. The server will run of port 8080 in the localhost and the request needs 2 headers `auth-token` with value `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNrZjg2cm9sNzAwMDF6MTBmYjNveTNwaDUiLCJpYXQiOjE2MDA1OTY3MTB9.bbGI82--q4U9WIdn4KhAHuVlK4XpkG0moKm6lUPWEww` and `content-type`with value `application/json`
 
