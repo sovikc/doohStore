@@ -45,7 +45,9 @@ There are a 2 `entities` and a `relation`. These enities are `Shopping Centres` 
 
 ### Shopping Centre
 1. A Centre object has a name and an address. The name is mandatory and unique so are all the address fields lineOne, city, state, postalCode, and country, with only exception being lineTwo of the address.
-2. A Centre can have multiple Locations with unique codes to signify a location where an Asset can be installed. These locations can only be created once a Shopping Centre exists.    
+2. A Centre can have multiple Locations with unique codes to signify a location where an Asset can be installed. These locations can only be created once a Shopping Centre exists.
+3. Removing a location also removes the allocations to that location.
+4. Removing a Centre also removes the locations and allocations to those locations.
 
 ### Asset and its allocation
 1. An Asset object has a name, an active status, length, breadth, and depth, and an optional allocation (to denote where it's allocated) since an Asset can exist without being allocated. 
