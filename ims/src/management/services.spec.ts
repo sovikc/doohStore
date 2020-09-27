@@ -176,7 +176,7 @@ const mockRepo: Repository = (function Impl(): Repository {
         allocations.set(locationID, allocation);
         const asset = assets.get(assetID);
         asset.location = locationID;
-        const allocationID: number = 0;
+        const allocationID: number = 1;
         resolve(allocationID);
       });
     },
@@ -315,7 +315,7 @@ describe(mediaAsset, function assetService() {
     const assetRecord = await mockRepo.findAssetMatch('Sign-1-1203-1005-0200');
     const asset = await allocateAsset('someuserid', assetRecord.id, centres[0].id, 'L123');
     expect(asset).not.toBeInstanceOf(Error);
-    expect(asset.location).toEqual('L123');
+    expect(asset.allocation.code).toEqual('L123');
   });
   it('must not allow an asset to be allocated to a non-vacant location', async () => {
     const { allocateAsset } = makeManageAssets(mockRepo);
@@ -348,9 +348,9 @@ describe(mediaAsset, function assetService() {
     });
     const assetRecord = await mockRepo.findAssetMatch('Sign-2-1500-0709-0314');
     const asset = await allocateAsset('someuserid', assetRecord.id, centres[0].id, 'L234');
-    expect(asset.location).toEqual('L234');
+    expect(asset.allocation.code).toEqual('L234');
     const inactiveAsset = await updateAsset('someuserid', asset.id, undefined, undefined, undefined, undefined, false);
-    expect(inactiveAsset.location).toBeUndefined();
+    expect(inactiveAsset.allocation).toBeUndefined();
   });
   it('must allow deallocation of an asset', async () => {
     const { deallocateAsset } = makeManageAssets(mockRepo);
