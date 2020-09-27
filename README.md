@@ -67,7 +67,7 @@ There are a 2 `entities` and a `relation`. These enities are `Shopping Centres` 
 4. Docker secrets in the docker-compose files
 
 ## How to run
-1. The code is dockerized and can easily be run with docker-compose
+1. The code is dockerized and can easily be run with docker-compose. The docker-compose.yml has references to Dockerfiles in **ims** and **db**. It would be easier to use this file with `docker-compose build` followed by `docker-compose up` and also `docker-compose down` to remove the containers. 
 2. The server will run on port 8080 and the request needs 2 headers `auth-token` with value `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNrZjg2cm9sNzAwMDF6MTBmYjNveTNwaDUiLCJpYXQiOjE2MDA1OTY3MTB9.bbGI82--q4U9WIdn4KhAHuVlK4XpkG0moKm6lUPWEww` and `content-type`with value `application/json`. The `auth-token` will ensure that these APIs are protected against anonymous access.
 3. The code has following APIs that can be used. There are example requests for `POST` and `PATCH` APIs.
 ```
