@@ -36,8 +36,22 @@ asset_allocation
 change_log
 ```
 2. All `insert` and `update` statements use database transactions with an isolation level of `Read Committed`.
-3. Every data manipulation is recorded in `change_log` table and can be used for both `audit` as well as `event source` if the services need to move in that direction.
-4. All the connection parameters are stored in `.env` file.
+3. All `deletes` are `soft` deletes.
+4. Every data manipulation is recorded in `change_log` table and can be used for both `audit` as well as `event source` if the services need to move in that direction. 
+5. All the connection parameters are stored in `.env` file.
+
+## Rules
+There are a 2 `entities` and a `relation`. These enities are `Shopping Centres` (called just Centres to avoid long names) and `Assets` and their relation being the `allocation of an Asset to a location inside a Shopping Centre`.
+
+### Shopping Centre
+1. A Centre object has a name and an address. The name is mandatory and unique so are all the address fields lineOne, city, state, postalCode, and country, with only exception being lineTwo of the address.
+2. A Centre can have multiple Locations with unique codes to signify a location where an Asset can be installed. These locations can only be created once a Shopping Centre exists.    
+
+### Asset and its allocation
+1. An Asset object has a name, an active status, length, breadth, and depth, and an optional allocation (to denote where it's allocated) since an Asset can exist without being allocated. 
+2. An Asset cannot be allocated to a deactivated Centre or a location (inside a Centre) already occupied by another Asset, unless the occupying Asset is either deallocated or it's made inactive.
+3. An Asset cannot be allocated again unless it's current allocation is removed. The UI can call 2 APIs and also inform/warn the user about what is going on behind the scene. 
+4. If an Asset is not active anymore(due to being removed for maintenance or such, using the `PATCH /assets/:id`), then it's allocation to a Shopping Centre's location is automatically removed. 
 
 ## Tests
 1. Jest is used as a testing framework.
