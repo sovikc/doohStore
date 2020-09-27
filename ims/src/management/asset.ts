@@ -171,6 +171,16 @@ export function makeManageAssets(repository: Repository) {
     }
 
     if (asset.allocation) {
+      const existingAllocation = asset.allocation;
+      if (
+        existingAllocation.centreID === centreID &&
+        existingAllocation.locationID === location.id &&
+        existingAllocation.code === code
+      ) {
+        const err = new Error(ErrorMessages.AssetAlreadyAllocated);
+        err.name = Errors.InvalidRequestError;
+        throw err;
+      }
       const err = new Error(ErrorMessages.AssetHasExistingAllocation);
       err.name = Errors.InvalidRequestError;
       throw err;
@@ -179,12 +189,6 @@ export function makeManageAssets(repository: Repository) {
     const allocation = await repository.findAllocationByLocation(centreID, location.id).catch((err) => {
       throw err;
     });
-
-    if (allocation && allocation.assetID === asset.id) {
-      const err = new Error(ErrorMessages.AssetAlreadyAllocated);
-      err.name = Errors.InvalidRequestError;
-      throw err;
-    }
 
     if (allocation) {
       const err = new Error(ErrorMessages.AssetAllocationConflict);
