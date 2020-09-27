@@ -124,9 +124,13 @@ export function makeManageAssets(repository: Repository) {
         throw err;
       });
 
-      await repository.removeAllocation(allocation.centreID, allocation.locationID, assetID, userID).catch((err) => {
-        throw err;
-      });
+      if (allocation) {
+        await repository.removeAllocation(allocation.centreID, allocation.locationID, assetID, userID).catch((err) => {
+          throw err;
+        });
+      }
+
+      asset.allocation = undefined;
     }
 
     return asset;
@@ -156,6 +160,12 @@ export function makeManageAssets(repository: Repository) {
     // can only be allocated if asset = active and centre = correct and location = correct and location = !occupied
     if (!asset) {
       const err = new Error(ErrorMessages.NonExistentAsset);
+      err.name = Errors.InvalidRequestError;
+      throw err;
+    }
+
+    if (!asset.active) {
+      const err = new Error(ErrorMessages.OfflineAsset);
       err.name = Errors.InvalidRequestError;
       throw err;
     }

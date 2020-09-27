@@ -34,6 +34,7 @@ export enum ErrorMessages {
   AssetExists = 'An Asset with this name already exists',
   ValidAssetID = 'Asset ID is necessary to update the Asset information',
   NonExistentAsset = 'This Asset does not exist',
+  OfflineAsset = 'This Asset seems to have been taken offline. Please make it active before allocating.',
   AssetAllocationConflict = 'There is an asset allocated to this location. Please remove the current allocation before reallocating another asset',
   AssetAlreadyAllocated = 'This Asset is already allocated at this location',
   AssetHasExistingAllocation = 'This Asset has an existing allocation. Please remove that allocation before reallocating',

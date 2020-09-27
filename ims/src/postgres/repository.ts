@@ -515,8 +515,8 @@ export function makeRepository(pool: any) {
     const selectAssetStmt = `SELECT a.*, aa.shopping_centre_uuid, aa.location_uuid, loc.location_code 
     FROM asset a LEFT JOIN asset_allocation aa on a.asset_uuid = aa.asset_uuid 
     LEFT JOIN location_within_centre loc on aa.location_uuid = loc.location_uuid 
-    WHERE a.asset_active = $1 and a.deactivated = $2 and a.asset_uuid = $3`;
-    const values = [true, false, assetID];
+    WHERE a.deactivated = $1 and a.asset_uuid = $2`;
+    const values = [false, assetID];
     try {
       const res = await client.query(selectAssetStmt, values);
       const { rows } = res;
