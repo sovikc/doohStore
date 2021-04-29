@@ -1,5 +1,5 @@
 # Inventory
-An inventory of physical display panels installed in shopping centres
+An inventory of physical display panels installed in shopping centres, airports, gyms, and highways.
 
 ## Approach
 A mix of ideas from Domain-driven design and Uncle Bob's Clean Architecture implemented in TypeScript
