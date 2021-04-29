@@ -1,4 +1,4 @@
-# oohMedia
+# Inventory
 An inventory of physical display panels installed in shopping centres
 
 ## Approach
